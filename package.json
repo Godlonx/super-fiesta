@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "name": "super-fiesta",
+  "description": "Rogue Like Chess game",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Godlonx/super-fiesta.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Godlonx/super-fiesta/issues"
+  },
+  "homepage": "https://github.com/Godlonx/super-fiesta#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
