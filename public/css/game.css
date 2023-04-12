@@ -5,16 +5,19 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: white;
 }
 
 .board {
   width: 400px;
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid black;
+  margin: 50px 500px;
 }
 
 .black {
-  background-color: black;
+  background-color: #779556;
+}
+
+.white {
+  background-color: #dbdebe;
 }/*# sourceMappingURL=game.css.map */

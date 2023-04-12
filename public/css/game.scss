@@ -1,3 +1,5 @@
+$whiteColor: #dbdebe;
+$blackColor: #779556;
 
 .cell {
     height: 50px;
@@ -5,17 +7,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid black;
     cursor: pointer;
-    background-color: white;
 }
 
 .board {
-    width: 426px;
+    width: 400px;
     display: flex;
     flex-wrap: wrap;
+    margin: 50px 500px;
 }
 
 .black {
-    background-color: black;
+    background-color: $blackColor;
+}
+
+.white {
+    background-color: $whiteColor;
 }
