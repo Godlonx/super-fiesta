@@ -1,9 +1,23 @@
 // Dependecies
-import fs from 'fs'
+import fs from "node:fs"
 
 const enemiesData = fs.readFileSync('./enemies.json','utf8');
 const enemiesTable = JSON.parse(enemiesData)
 
+piecesSprites = {
+    whiteKing: "../public/img/piecesSprites/whiteKing.png",
+    whitePawn: "../public/img/piecesSprites/whitePawn.png",
+    whiteBishop: "../public/img/piecesSprites/whiteBishop.png",
+    whiteQueen: "../public/img/piecesSprites/whiteQueen.png",
+    whiteKnight: "../public/img/piecesSprites/whiteKnight.png",
+    whiteRook: "../public/img/piecesSprites/whiteRook.png",
+    blackKing: "../public/img/piecesSprites/blackKing.png",
+    blackPawn: "../public/img/piecesSprites/blackPawn.png",
+    blackBishop: "../public/img/piecesSprites/blackBishop.png",
+    blackQueen: "../public/img/piecesSprites/blackQueen.png",
+    blackKnight: "../public/img/piecesSprites/blackKnight.png",
+    blackRook: "../public/img/piecesSprites/blackRook.png",
+}
 
 piecesMaker = {
     "king": (pos, color) => {
@@ -25,9 +39,6 @@ piecesMaker = {
         return new Piece("rook", pos, color)
     }
 }
-
-// Classes
-
 
 class Board {
     constructor(pieces, lvl) {
