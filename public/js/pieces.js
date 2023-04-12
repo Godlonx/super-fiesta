@@ -6,11 +6,9 @@ class Piece {
         this._pos = pos
         this.#color = color
     }
-
     get pos() {
         return this._pos
     }
-
     set pos(nextPos) {
         this._pos = nextPos
     }
