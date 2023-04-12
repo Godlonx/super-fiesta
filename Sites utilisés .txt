@@ -1,0 +1,5 @@
+Sites utilisés :
+
+https://pixijs.io/examples/#/demos-basic/container.js
+
+https://www.youtube.com/watch?v=ajaduDDePIY
