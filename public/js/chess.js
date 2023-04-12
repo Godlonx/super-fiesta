@@ -49,7 +49,7 @@ class Board {
 
     initBoard(playerPieces, enemyPieces) {
         for (let i=0; i<8; i++) {
-            let newLine = []
+            const newLine = []
             for (let j=0; j<8; j++) {
                 let notFound = true
                 playerPieces.forEach(piece => {
@@ -83,7 +83,7 @@ class Board {
     }
 
     setEnemyPieces(lvl) {
-        let enemyPieces = []
+        const enemyPieces = []
         const enemy = enemiesTable.lvl[lvl]
         for (let i=0; i<enemy.pieces.length; i++) {
             enemyPieces.push(piecesMaker[enemy.pieces[i]](enemy.pos[i], "black"))

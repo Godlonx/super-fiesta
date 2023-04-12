@@ -18,12 +18,12 @@ class Piece {
     get color() {
         return this.#color
     }
-    checkMovements(nextPos) {
+    checkMovements(_nextPos) {
         return false
     }
 }
 
-class Pawn extends Piece {
+class _Pawn extends Piece {
     constructor(pos, color) {
         super(pos, color)
         this._name = "pawn"
@@ -34,7 +34,7 @@ class Pawn extends Piece {
     }    
 }
 
-class King extends Piece {
+class _King extends Piece {
     constructor(pos, color) {
         super(pos, color)
         this._name = "king"
@@ -54,7 +54,7 @@ class King extends Piece {
     }    
 }
 
-class Queen extends Piece {
+class _Queen extends Piece {
     constructor(pos, color) {
         super(pos, color)
         this._name = "queen"
@@ -74,7 +74,7 @@ class Queen extends Piece {
     }    
 }
 
-class Bishop extends Piece {
+class _Bishop extends Piece {
     constructor(pos, color) {
         super(pos, color)
         this._name = "bishop"
@@ -91,7 +91,7 @@ class Bishop extends Piece {
     }   
 }
 
-class Rook extends Piece {
+class _Rook extends Piece {
     constructor(pos, color) {
         super(pos, color)
         this._name = "rook"

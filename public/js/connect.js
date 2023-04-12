@@ -1,5 +1,5 @@
-import {Board} from "./chess.js"
+import {_Board} from "./chess.js"
 
-const test = ()=> {
+const _test = ()=> {
     console.log('test');
 }
