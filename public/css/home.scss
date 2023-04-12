@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     background-color: #B5B2B2;
 }
@@ -5,13 +6,32 @@ body {
 .logo {
     width: 400px;
     margin: 0px 500px 0px;
+=======
+$backGroundColor: #2c2c2c;
+
+body {
+    background-color: $backGroundColor;
+    display: grid;
+    justify-content: center;
+}
+
+.logo {
+    width: 300px;
+>>>>>>> e2c3010ee896f86eb5966d6b706cb857e5ca44b5
 }
 
 .drawer {
     display: grid;
+<<<<<<< HEAD
     justify-content:space-around;
     align-items: center;
     margin: 0px 200px;
+=======
+    justify-content:center;
+    align-items: center;
+    height: 350px;
+    margin: 50px 0px 40px;
+>>>>>>> e2c3010ee896f86eb5966d6b706cb857e5ca44b5
 }
 
 .button {
@@ -27,4 +47,10 @@ body {
     width: 150px;
     height: 50px;
     border-radius: 15px;
+<<<<<<< HEAD
 }
+=======
+}
+
+
+>>>>>>> e2c3010ee896f86eb5966d6b706cb857e5ca44b5
