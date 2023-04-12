@@ -1,3 +1,21 @@
-body {
-    background-color: #888888;
+
+.cell {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: white;
+}
+
+.board {
+    width: 426px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.black {
+    background-color: black;
 }
