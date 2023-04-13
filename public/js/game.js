@@ -46,6 +46,7 @@ const GetPiece = (cellPos) => {
             newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
             newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8]
             newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8] = null
+            removeSelected()
         }
         handedPiece = null
         cellIndex = null
@@ -53,5 +54,14 @@ const GetPiece = (cellPos) => {
         console.log(val.children);
         handedPiece = val.children
         cellIndex = cellPos
+        removeSelected();
+        val.classList.add("selected");
     }
+}
+
+function removeSelected() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(function(cell) {
+      cell.classList.remove("selected");
+    });
 }
