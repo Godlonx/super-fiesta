@@ -4,7 +4,7 @@ const board = document.createElement("div");
 board.className = "board";
 document.body.appendChild(board);
 
-let newBoard = new Board([], 1)
+let newBoard = new Board([], 100)
 newBoard.showBoard()
 
 for (let i = 0; i < 8; i++) {
@@ -24,6 +24,7 @@ for (let i = 0; i < 8; i++) {
             }
         }
         cell.id = (c+8*i)
+        cell.innerHTML = cell.id
         cell.onclick = function(){ GetPiece(cell.id) }
         if (newBoard.boardShadow[i][c] != null) {
             console.log(newBoard.boardShadow[i][c]);
