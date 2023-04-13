@@ -22,7 +22,7 @@ export default class Piece {
     get sprite() {
         return this._sprite
     }
-    checkMovementsRight(nextPos) {
+    checkMovementsRight(_nextPos) {
         return false
     }
     move(nextPos) {
