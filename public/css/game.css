@@ -13,6 +13,10 @@
   flex-wrap: wrap;
   margin: 50px 500px;
 }
+.board img {
+  width: 50px;
+  height: 50px;
+}
 
 .black {
   background-color: #779556;

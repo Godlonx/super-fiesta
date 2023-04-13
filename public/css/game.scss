@@ -15,6 +15,10 @@ $blackColor: #779556;
     display: flex;
     flex-wrap: wrap;
     margin: 50px 500px;
+    img {
+        width: 50px;
+        height: 50px;
+    }
 }
 
 .black {
@@ -24,3 +28,4 @@ $blackColor: #779556;
 .white {
     background-color: $whiteColor;
 }
+
