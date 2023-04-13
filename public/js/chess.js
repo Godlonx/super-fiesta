@@ -1,10 +1,24 @@
 // Dependecies
-import fs from "node:fs"
+import Bishop from './bishop.js';
+import Queen from './queen.js';
+import King from './king.js';
+import Pawn from './pawn.js';
+import Rook from './rook.js';
+import Knight from './knight.js';
 
-const enemiesData = fs.readFileSync('./enemies.json','utf8');
-const enemiesTable = JSON.parse(enemiesData)
+// const enemiesData = fs.readFileSync('./enemies.json','utf8');
+// const enemiesTable = JSON.parse(enemiesData)
 
-piecesSprites = {
+const enemiesTable = {
+    "lvl": {
+        "0":{"object":null, "pieces":["king", "pawn", "pawn"], "pos":[3, 11, 12]},
+        "1":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop"], "pos":[3,10, 11, 12, 13, 2]},
+        "2":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight"], "pos":[3, 10, 11, 12, 13, 2, 5, 4]},
+        "3":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight", "rook", "queen"], "pos":[3, 10, 11, 12, 13, 1, 2, 5, 0, 4]}
+    }
+}
+
+const piecesSprites = {
     whiteKing: "../public/img/piecesSprites/whiteKing.png",
     whitePawn: "../public/img/piecesSprites/whitePawn.png",
     whiteBishop: "../public/img/piecesSprites/whiteBishop.png",
@@ -19,31 +33,32 @@ piecesSprites = {
     blackRook: "../public/img/piecesSprites/blackRook.png",
 }
 
-piecesMaker = {
+const piecesMaker = {
     "king": (pos, color) => {
-        return new Piece("king", pos, color)
+        return new King(pos, color, piecesSprites[color+"King"])
     },
     "pawn": (pos, color) => {
-        return new Piece("pawn", pos, color)
+        return new Pawn(pos, color, piecesSprites[color+"Pawn"])
     },
     "bishop": (pos, color) => {
-        return new Piece("bishop", pos, color)
+        return new Bishop(pos, color , piecesSprites[color+"Bishop"])
     },
     "queen": (pos, color) => {
-        return new Piece("queen", pos, color)
+        return new Queen(pos, color, piecesSprites[color+"Queen"])
     },
     "knight": (pos, color) => {
-        return new Piece("knight", pos, color)
+        return new Knight(pos, color, piecesSprites[color+"Knight"])
     },
     "rook": (pos, color) => {
-        return new Piece("rook", pos, color)
+        return new Rook(pos, color, piecesSprites[color+"Rook"])
     }
 }
 
-class Board {
+export default class Board {
     constructor(pieces, lvl) {
         this.boardShadow = []
         const enemyPieces = this.setEnemyPieces(lvl)
+        const playerPieces = [piecesMaker["king"]()] 
         this.initBoard(pieces, enemyPieces)
     }
 
@@ -54,7 +69,7 @@ class Board {
                 let notFound = true
                 playerPieces.forEach(piece => {
                     if (notFound) {
-                        const pos = piece.pos-1
+                        const pos = piece.pos
                         const posY = pos%8
                         const posX = Math.trunc(pos/8)
                         if (posX == i && posY == j) {
@@ -65,7 +80,7 @@ class Board {
                 });
                 enemyPieces.forEach(piece => {
                     if (notFound) {
-                        const pos = piece.pos-1
+                        const pos = piece.pos
                         const posY = pos%8
                         const posX = Math.trunc(pos/8)
                         if (posX == i && posY == j) {
@@ -106,6 +121,3 @@ class Board {
         return board
     }
 }
-
-const test = new Board([piecesMaker.king(60, "white"), piecesMaker.pawn(52, "black")], 1)
-console.log(test.showBoard());
