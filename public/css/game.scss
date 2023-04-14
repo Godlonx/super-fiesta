@@ -19,13 +19,19 @@ $blackColor: #779556;
         width: 50px;
         height: 50px;
     }
+    .black {
+        background-color: $blackColor;
+    }
+    
+    .white {
+        background-color: $whiteColor;
+    }
+    
+    .selected {
+        background-color: orange;
+    }
+    
+    .preMoves {
+        background-color: gray;
+    }
 }
-
-.black {
-    background-color: $blackColor;
-}
-
-.white {
-    background-color: $whiteColor;
-}
-

@@ -17,11 +17,15 @@
   width: 50px;
   height: 50px;
 }
-
-.black {
+.board .black {
   background-color: #779556;
 }
-
-.white {
+.board .white {
   background-color: #dbdebe;
+}
+.board .selected {
+  background-color: orange;
+}
+.board .preMoves {
+  background-color: gray;
 }/*# sourceMappingURL=game.css.map */

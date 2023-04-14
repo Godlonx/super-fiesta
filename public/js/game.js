@@ -4,7 +4,7 @@ const board = document.createElement("div");
 board.className = "board";
 document.body.appendChild(board);
 
-let newBoard = new Board([], 100)
+const newBoard = new Board([], 100)
 newBoard.showBoard()
 
 for (let i = 0; i < 8; i++) {
@@ -28,7 +28,7 @@ for (let i = 0; i < 8; i++) {
         cell.onclick = function(){ GetPiece(cell.id) }
         if (newBoard.boardShadow[i][c] != null) {
             console.log(newBoard.boardShadow[i][c]);
-            let pieceImg = document.createElement('img')
+            const pieceImg = document.createElement('img')
             pieceImg.src = newBoard.boardShadow[i][c].sprite
             cell.appendChild(pieceImg)
         }
@@ -38,7 +38,7 @@ for (let i = 0; i < 8; i++) {
 let handedPiece = null;
 let cellIndex = null;
 const GetPiece = (cellPos) => {
-    let val = document.getElementById(cellPos)
+    const val = document.getElementById(cellPos)
     console.log("next pos", cellPos,"pawn pos:", cellIndex);
     if (handedPiece != null) {
         console.log(newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].possibleMoves.includes(Number(cellPos)));
@@ -70,4 +70,21 @@ const GetPiece = (cellPos) => {
         console.log(newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8]);
         cellIndex = cellPos
     }
+    removeSelected();
+    if (handedPiece != null) {
+    val.classList.add("selected");
+    newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].possibleMoves.forEach(val => {
+        if (val >= 0 && val <= 63) {
+            document.getElementById(val).classList.add("preMoves");
+        }
+    })
+    }
+}
+
+function removeSelected() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(function(cell) {
+      cell.classList.remove("selected");
+      cell.classList.remove("preMoves");
+    });
 }

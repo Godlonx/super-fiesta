@@ -59,7 +59,7 @@ export default class Board {
     constructor(pieces, lvl) {
         this.boardShadow = []
         const enemyPieces = this.setEnemyPieces(lvl)
-        const playerPieces = [piecesMaker["king"]()] 
+        const _playerPieces = [piecesMaker["king"]()] 
         this.initBoard(pieces, enemyPieces)
         this.whitePiecesTake = []
         this.blackPiecesTake = []
