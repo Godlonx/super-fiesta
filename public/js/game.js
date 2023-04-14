@@ -73,7 +73,11 @@ const GetPiece = (cellPos) => {
     removeSelected();
     if (handedPiece != null) {
     val.classList.add("selected");
-    document.getElementById(26).classList.add("preMoves");
+    newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].possibleMoves.forEach(val => {
+        if (val >= 0 && val <= 63) {
+            document.getElementById(val).classList.add("preMoves");
+        }
+    })
     }
 }
 
