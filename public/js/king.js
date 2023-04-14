@@ -9,20 +9,20 @@ export default class King extends Piece {
     checkMovementsRight(nextPos) {
         if (nextPos == this._pos+1) {
             return this._pos%8 < 7
-        } else if (nextPos == this._pos-1) {
-            return this._pos%8 > 1
-        } else if (nextPos == this._pos+8) {
-            return this._pos < 46
-        } else if (nextPos == this._pos-8) {
-            return this._pos > 7
-        } else if (nextPos == this._pos+7) {
-            return this._pos%8 < 7 && this._pos < 46
-        } else if (nextPos == this._pos-7) {
-            return this._pos%8 > 1 && this._pos > 1
-        } else if (nextPos == this._pos+9) {
-            return this._pos < 46 && this._pos%8 < 7
-        } else if (nextPos == this._pos-9) {
-            return this._pos > 7 && this._pos%8 > 1
+        } else if (this._pos-1 == nextPos) {
+            return this._pos%8 > 0
+        } else if (this._pos+8 == nextPos) {
+            return true
+        } else if (this._pos-8 == nextPos) {
+            return true
+        } else if (this._pos+7 == nextPos) { // Left-Down
+            return this._pos%8 > 0
+        } else if (this._pos-9 == nextPos) { // Left-Up
+            return true
+        } else if (this._pos-7 == nextPos) { // Right-Up
+            return this._pos%8 < 7
+        } else if (this._pos+9 == nextPos) { // Right-Down
+            return true
         }
         return false
     }    

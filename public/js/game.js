@@ -4,7 +4,7 @@ const board = document.createElement("div");
 board.className = "board";
 document.body.appendChild(board);
 
-const newBoard = new Board([], 1)
+const newBoard = new Board([], 100)
 newBoard.showBoard()
 
 for (let i = 0; i < 8; i++) {
@@ -24,6 +24,7 @@ for (let i = 0; i < 8; i++) {
             }
         }
         cell.id = (c+8*i)
+        cell.innerHTML = cell.id
         cell.onclick = function(){ GetPiece(cell.id) }
         if (newBoard.boardShadow[i][c] != null) {
             console.log(newBoard.boardShadow[i][c]);
@@ -42,10 +43,21 @@ const GetPiece = (cellPos) => {
     if (handedPiece != null) {
         console.log(newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8], newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].checkMovementsRight(cellPos));
         if (newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].checkMovementsRight(cellPos)) {
-            val.appendChild(handedPiece["0"])
-            newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
-            newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8]
-            newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8] = null
+            if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
+                if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color == "black") {
+                    val.appendChild(handedPiece["0"])
+                    newBoard.whitePiecesTake.push(newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8])
+                    newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
+                    newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8]
+                    newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8] = null
+                    console.log(newBoard.whitePiecesTake);
+                }
+            } else {
+                val.appendChild(handedPiece["0"])
+                newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
+                newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8]
+                newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8] = null
+            }
         }
         handedPiece = null
         cellIndex = null

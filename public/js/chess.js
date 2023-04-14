@@ -12,9 +12,10 @@ import Knight from './knight.js';
 const enemiesTable = {
     "lvl": {
         "0":{"object":null, "pieces":["king", "pawn", "pawn"], "pos":[3, 11, 12]},
-        "1":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop"], "pos":[3,10, 11, 12, 13, 2]},
+        "1":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop"], "pos":[3, 10, 11, 12, 13, 34]},
         "2":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight"], "pos":[3, 10, 11, 12, 13, 2, 5, 4]},
-        "3":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight", "rook", "queen"], "pos":[3, 10, 11, 12, 13, 1, 2, 5, 0, 4]}
+        "3":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight", "rook", "queen"], "pos":[3, 10, 11, 12, 13, 1, 2, 5, 0, 4]},
+        "100":{"object":null, "pieces":["king", "pawn", "bishop", "queen", "rook", "knight"], "pos":[0, 1, 2, 3, 4, 5]}
     }
 }
 
@@ -60,6 +61,8 @@ export default class Board {
         const enemyPieces = this.setEnemyPieces(lvl)
         const _playerPieces = [piecesMaker["king"]()] 
         this.initBoard(pieces, enemyPieces)
+        this.whitePiecesTake = []
+        this.blackPiecesTake = []
     }
 
     initBoard(playerPieces, enemyPieces) {
