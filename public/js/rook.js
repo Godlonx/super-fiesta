@@ -6,7 +6,10 @@ export default class Rook extends Piece {
         this._name = "rook"
     }
 
-    checkMovementsRight(nextPos) {
-        return (Math.trunc(nextPos/8) == Math.trunc(this.pos/8) || nextPos%8 == this._pos%8)
+    checkMovementsRight() {
+        for (let i=0; i<8; i++) {
+            this._possibleMoves.push((this._pos%8)+(8*i))
+            this._possibleMoves.push((this._pos-this._pos%8)+i)
+        }
     }
 }
