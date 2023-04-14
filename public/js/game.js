@@ -46,7 +46,6 @@ const GetPiece = (cellPos) => {
             newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
             newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8]
             newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8] = null
-            removeSelected()
         }
         handedPiece = null
         cellIndex = null
@@ -54,8 +53,10 @@ const GetPiece = (cellPos) => {
         console.log(val.children);
         handedPiece = val.children
         cellIndex = cellPos
-        removeSelected();
-        val.classList.add("selected");
+    }
+    removeSelected();
+    if (handedPiece != null) {
+    val.classList.add("selected");
     }
 }
 
