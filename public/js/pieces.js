@@ -2,10 +2,12 @@ export default class Piece {
     _name;
     _pos;
     _color;
+    _possibleMoves;
     constructor(pos, color, sprite) {
         this._pos = pos
         this._color = color
         this._sprite = sprite
+        this._possibleMoves = []
     }
     get pos() {
         return this._pos
@@ -21,6 +23,12 @@ export default class Piece {
     }
     get sprite() {
         return this._sprite
+    }
+    get possibleMoves() {
+        return this._possibleMoves
+    }
+    set possibleMoves(vals=[]) {
+        this._possibleMoves = []
     }
     checkMovementsRight(nextPos) {
         return false
