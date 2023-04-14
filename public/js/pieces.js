@@ -30,7 +30,7 @@ export default class Piece {
     set possibleMoves(vals=[]) {
         this._possibleMoves = []
     }
-    checkMovementsRight(nextPos) {
+    checkMovementsRight() {
         return false
     }
     move(nextPos) {

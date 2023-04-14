@@ -6,24 +6,30 @@ export default class Knight extends Piece {
         this._name = "knight"
     }
 
-    checkMovementsRight(nextPos) {
-        if (nextPos == this._pos+(17)) {
-            return this._pos%8 < 7
-        }else if (nextPos == this._pos+(15)) {
-            return this._pos%8 > 0
-        } else if (nextPos == this._pos+(6)) {
-            return this._pos%8 > 1 
-        } else if (nextPos == this._pos+(10)) {
-            return this._pos%8 < 6
-        } else if (nextPos == this._pos-(17)) {
-            return this._pos%8 > 0
-        } else if (nextPos == this._pos-(15)) {
-            return this._pos%8 < 7
-        } else if (nextPos == this._pos-(6)) {
-            return this._pos%8 < 6
-        } else if (nextPos == this._pos-(10)) {
-            return this._pos%8 > 1
+    checkMovementsRight() {
+        if (this._pos%8 < 7) {
+            this._possibleMoves.push(this._pos+(17))
         }
-        return false
+        if (this._pos%8 > 0) {
+            this._possibleMoves.push(this._pos+(15))
+        } 
+        if (this._pos%8 > 1) {
+            this._possibleMoves.push(this._pos+(6))
+        }
+        if (this._pos%8 < 6) {
+            this._possibleMoves.push(this._pos+(10))
+        }
+        if (this._pos%8 > 0  && Math.trunc(this._pos/8) > 1) {
+            this._possibleMoves.push(this._pos-(17))
+        }
+        if (this._pos%8 < 7  && Math.trunc(this._pos/8) > 1) {
+            this._possibleMoves.push(this._pos-(15))
+        }
+        if (this._pos%8 < 6  && Math.trunc(this._pos/8) > 0) {
+            this._possibleMoves.push(this._pos-(6))
+        }
+        if (this._pos%8 > 1 && Math.trunc(this._pos/8) > 0) {
+            this._possibleMoves.push(this._pos-(10))
+        }
     }
 }

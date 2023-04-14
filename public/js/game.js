@@ -56,6 +56,7 @@ const GetPiece = (cellPos) => {
             } else {
                 console.log(handedPiece["0"]);
                 val.appendChild(handedPiece["0"])
+                newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].possibleMoves = []
                 newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
                 newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8]
                 newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8] = null
