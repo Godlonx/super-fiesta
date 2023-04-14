@@ -41,10 +41,11 @@ const GetPiece = (cellPos) => {
     const val = document.getElementById(cellPos)
     console.log("next pos", cellPos,"pawn pos:", cellIndex);
     if (handedPiece != null) {
-        console.log(newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8], newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].checkMovementsRight(cellPos));
-        if (newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].checkMovementsRight(cellPos)) {
+        console.log(newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].possibleMoves.includes(Number(cellPos)));
+        if (newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].possibleMoves.includes(Number(cellPos)))
             if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
                 if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color == "black") {
+                    val.removeChild(val.children)
                     val.appendChild(handedPiece["0"])
                     newBoard.whitePiecesTake.push(newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8])
                     newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
@@ -53,17 +54,19 @@ const GetPiece = (cellPos) => {
                     console.log(newBoard.whitePiecesTake);
                 }
             } else {
+                console.log(handedPiece["0"]);
                 val.appendChild(handedPiece["0"])
                 newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
                 newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8]
                 newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8] = null
             }
-        }
         handedPiece = null
         cellIndex = null
     } else if (handedPiece == null && newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
         console.log(val.children);
         handedPiece = val.children
+        newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].checkMovementsRight(cellPos)
+        console.log(newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8]);
         cellIndex = cellPos
     }
     removeSelected();
