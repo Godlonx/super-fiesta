@@ -24,4 +24,12 @@
 
 .white {
   background-color: #dbdebe;
+}
+
+.selected {
+  background-color: orange;
+}
+
+.path {
+  background-color: green;
 }/*# sourceMappingURL=game.css.map */
