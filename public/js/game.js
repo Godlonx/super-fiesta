@@ -69,6 +69,7 @@ const GetPiece = (cellPos) => {
     removeSelected();
     if (handedPiece != null) {
     val.classList.add("selected");
+    document.getElementById(26).classList.add("preMoves");
     }
 }
 
@@ -76,5 +77,6 @@ function removeSelected() {
     const cells = document.querySelectorAll(".cell");
     cells.forEach(function(cell) {
       cell.classList.remove("selected");
+      cell.classList.remove("preMoves");
     });
 }
