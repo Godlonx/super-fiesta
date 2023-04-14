@@ -45,7 +45,7 @@ const GetPiece = (cellPos) => {
         if (newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].possibleMoves.includes(Number(cellPos)))
             if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
                 if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color == "black") {
-                    val.removeChild(val.children)
+                    val.removeChild(val.firstChild)
                     val.appendChild(handedPiece["0"])
                     newBoard.whitePiecesTake.push(newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8])
                     newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].move(cellPos)
