@@ -20,7 +20,7 @@ export default class Queen extends Piece {
                 return true
             } else if (this._pos-(7*i) == nextPos && i<=Math.min(8-posY, posX)) { // Right-Up
                 return true
-            } else if (this._pos+(9*i) == nextPos && i<=Math.min(8-posY, 8-posX)) { // Right-Down
+            } else if (this._pos+(9*i) == nextPos && i<Math.min(8-posY, 8-posX)) { // Right-Down
                 return true
             }
         }

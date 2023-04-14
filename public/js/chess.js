@@ -61,6 +61,8 @@ export default class Board {
         const enemyPieces = this.setEnemyPieces(lvl)
         const playerPieces = [piecesMaker["king"]()] 
         this.initBoard(pieces, enemyPieces)
+        this.whitePiecesTake = []
+        this.blackPiecesTake = []
     }
 
     initBoard(playerPieces, enemyPieces) {
