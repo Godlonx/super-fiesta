@@ -1,11 +1,20 @@
 import Board from './chess.js'
+import {piecesMaker} from './data.js';
 
 const dotSprite = '<img src="../public/img/dot.png" style="width: 20px; height: 20px; opacity: 0.5;">';
 const board = document.createElement("div");
 board.className = "board";
 document.body.appendChild(board);
 
-const newBoard = new Board([], 100)
+const playerPieces = [
+    piecesMaker["pawn"](51, "white"),
+    piecesMaker["pawn"](52, "white"),
+    piecesMaker["pawn"](53, "white"),
+    piecesMaker["bishop"](59, "white"),
+    piecesMaker["king"](60, "white"),
+    piecesMaker["knight"](61, "white")
+]
+const newBoard = new Board(playerPieces, 100)
 
 for (let i = 0; i < 8; i++) {
     for (let c = 0; c < 8; c++) {
