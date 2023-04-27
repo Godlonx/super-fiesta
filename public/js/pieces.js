@@ -1,3 +1,5 @@
+import { piecesMouvements } from "./chess.js";
+
 export default class Piece {
     _name;
     _pos;
@@ -30,8 +32,9 @@ export default class Piece {
     set possibleMoves(vals=[]) {
         this._possibleMoves = []
     }
-    checkMovementsRight() {
-        return false
+    checkMovementsRight(board) {
+        this._possibleMoves = piecesMouvements[this._name](this, board)
+
     }
     move(nextPos) {
         this._pos = Number(nextPos)

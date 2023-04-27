@@ -26,6 +26,9 @@
 .board .selected {
   background-color: orange;
 }
-.board .preMoves {
-  background-color: gray;
+.board .whitePreMoves {
+  background-color: #bec297;
+}
+.board .blackPreMoves {
+  background-color: #accc99;
 }/*# sourceMappingURL=game.css.map */
