@@ -7,10 +7,10 @@ export default class Pawn extends Piece {
     }
 
     checkMovementsRight(nextPos) {
-        if (this._color == "black") {
-            return this._pos+8 < 64 && nextPos == this._pos+8
-        } else {
-            return this._pos-8 > 0 && nextPos == this._pos-8
+        if (this._color == "black" && this._pos+8 < 64) {
+            this._possibleMoves.push(this._pos+8)
+        } else if (this._color == "white" && this._pos-8 > 0) {
+            this._possibleMoves.push(this._pos-8)
         }
     }    
 }

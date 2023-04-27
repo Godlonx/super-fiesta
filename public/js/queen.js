@@ -7,23 +7,27 @@ export default class Queen extends Piece {
     }
 
     checkMovementsRight(nextPos) {
-        if (Math.trunc(nextPos/8) == Math.trunc(this.pos/8) || nextPos%8 == this._pos%8) {
-            return true
+        for (let i=0; i<8; i++) {
+            this._possibleMoves.push((this._pos%8)+(8*i))
+            this._possibleMoves.push((this._pos-this._pos%8)+i)
         }
         const posX = Math.trunc(this._pos/8)
         const posY = this._pos%8
-        for (let i=0; i<8; i++) {
-            // nextPos,"left-down", this._pos+(7*i),"left-up", this._pos-(7*i),"right-up", this._pos-(9*i),"right-down", this._pos+(9*i)
-            if (this._pos+(7*i) == nextPos && i<=Math.min(posY, 8-posX)) { // Left-Down
-                return true
-            } else if (this._pos-(9*i) == nextPos && i<=Math.min(posY, posX)) { // Left-Up
-                return true
-            } else if (this._pos-(7*i) == nextPos && i<=Math.min(8-posY, posX)) { // Right-Up
-                return true
-            } else if (this._pos+(9*i) == nextPos && i<Math.min(8-posY, 8-posX)) { // Right-Down
-                return true
+        console.log(posX, posY, 8-posX, 8-posY);
+        for (let i=1; i<8; i++) {
+            console.log(i, 7-posY, posX);
+            if (i<=Math.min(posY, 8-posX-1)) { // Left-Down
+                this._possibleMoves.push(this._pos+(7*i))
+            }
+            if (i<=Math.min(posY, posX)) { // Left-Up
+                this._possibleMoves.push(this._pos-(9*i))
+            }
+            if (i<=Math.min(8-posY-1, posX)) { // Right-Up
+                this._possibleMoves.push(this._pos-(7*i))
+            }
+            if (i<=Math.min(8-posY-1, 8-posX-1)) { // Right-Down
+                this._possibleMoves.push(this._pos+(9*i))
             }
         }
-        return false
-    }    
+    }
 }
