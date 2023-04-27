@@ -1,11 +1,12 @@
 import Board from './chess.js'
+import { piecesMaker } from './data.js';
 
 const dotSprite = '<img src="../public/img/dot.png" style="width: 20px; height: 20px; opacity: 0.5;">';
 const board = document.createElement("div");
 board.className = "board";
 document.body.appendChild(board);
 
-const newBoard = new Board([], 100)
+const newBoard = new Board([piecesMaker["king"](60, "white"), piecesMaker["queen"](56, "white")], 100)
 
 for (let i = 0; i < 8; i++) {
     for (let c = 0; c < 8; c++) {
@@ -43,7 +44,7 @@ const GetPiece = (cellPos) => {
         console.log(newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].possibleMoves.includes(Number(cellPos)));
         if (newBoard.boardShadow[Math.trunc(cellIndex/8)][cellIndex%8].possibleMoves.includes(Number(cellPos)))
             if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
-                if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color == "black") {
+                if (newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color != handedPiece.color) {
                     val.removeChild(val.firstChild)
                     val.appendChild(handedPiece["0"])
                     newBoard.whitePiecesTake.push(newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8])
@@ -74,8 +75,10 @@ const GetPiece = (cellPos) => {
     if (handedPiece != null) {
         val.classList.add("selected");
         newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].possibleMoves.forEach(val => {
-            if (val >= 0 && val <= 63) {
-                document.getElementById(val).innerHTML = dotSprite;
+            if (newBoard.boardShadow[Math.trunc(val/8)][val%8] != null) {
+                document.getElementById(val).classList.add("eatable")
+            } else {
+                document.getElementById(val).innerHTML = dotSprite
             }
         })
     }
@@ -85,6 +88,7 @@ function removeSelected() {
     const cells = document.querySelectorAll(".cell");
     cells.forEach(function(cell) {
       cell.classList.remove("selected");
+      cell.classList.remove("eatable")
       cell.innerHTML = cell.innerHTML.replace(dotSprite, "");
     });
 }

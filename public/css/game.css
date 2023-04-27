@@ -31,4 +31,7 @@
 }
 .board .blackPreMoves {
   background-color: #accc99;
+}
+.board .eatable {
+  background-color: red;
 }/*# sourceMappingURL=game.css.map */

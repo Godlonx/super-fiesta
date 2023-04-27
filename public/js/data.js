@@ -53,7 +53,7 @@ export const piecesMaker = {
 
 export const piecesMouvements = {
     pawn: (piece, board) => {
-        let possibleMoves = []
+        const possibleMoves = []
         const pos = piece.pos
         let nextPos = 0;
         if (piece.color == "black" && pos+8 < 64) {
@@ -64,16 +64,23 @@ export const piecesMouvements = {
         if (nextPos != 0 && board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] == null) {
             possibleMoves.push(nextPos)
         }
-        if (nextPos%8>0 && board.boardShadow[Math.trunc((nextPos-1)/8)][nextPos%8] != null) {
-            possibleMoves.push(nextPos-1)
+        if (nextPos%8>0 && board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8] != null) {
+            console.log(board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8]);
+            if (board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8].color != piece.color) {
+                possibleMoves.push(nextPos-1)
+            }
         }
-        if (nextPos%8<7 && board.boardShadow[Math.trunc((nextPos+1)/8)][nextPos%8] != null) {
-            possibleMoves.push(nextPos+1)
+        console.log(board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8] );
+        if (nextPos%8<7 && board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8] != null) {
+            console.log("can eat something");
+            if (board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8].color != piece.color) {
+                possibleMoves.push(nextPos+1)
+            }
         }
         return possibleMoves
     },
     rook: (piece, board) => {
-        let possibleMoves = []
+        const possibleMoves = []
         const pos = piece.pos
         for (let i=pos; i%8>0; i++) {
             if (board.boardShadow[Math.trunc(i/8)][i%8] != null && i != pos) {
@@ -107,7 +114,7 @@ export const piecesMouvements = {
     },
     bishop: (piece, board) => {
         const pos = piece.pos
-        let possibleMoves = []
+        const possibleMoves = []
         const posX = Math.trunc(pos/8)
         const posY = pos%8
         for (let i=pos%8; i>-1; i--) { // Left-Down
@@ -147,7 +154,7 @@ export const piecesMouvements = {
     },
     knight: (piece, board) => {
         const pos = piece.pos
-        let possibleMoves = []
+        const possibleMoves = []
         if (pos%8 < 7 && Math.trunc(pos/8) < 7) {
             const nextMove = pos+17 
             console.log(nextMove);
@@ -207,7 +214,7 @@ export const piecesMouvements = {
         return possibleMoves
     },
     queen: (piece, board) => {
-        let possibleMoves = []
+        const possibleMoves = []
         const rookMoves = piecesMouvements["rook"](piece, board)
         const bishopMoves = piecesMouvements["bishop"](piece, board)
         rookMoves.forEach(pos => {possibleMoves.push(pos)});
