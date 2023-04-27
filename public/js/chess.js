@@ -1,16 +1,10 @@
-// Dependecies
 import {enemiesTable, piecesMaker, _piecesUpgrade} from "./data.js";
-
-// const enemiesData = fs.readFileSync('./enemies.json','utf8');
-// const enemiesTable = JSON.parse(enemiesData)
-
-
 
 export default class Board {
     constructor(pieces, lvl) {
         this.boardShadow = []
         const enemyPieces = this.setEnemyPieces(lvl)
-        const playerPieces = [piecesMaker["king"]()] 
+        const _playerPieces = [piecesMaker["king"]()] 
         this.initBoard(pieces, enemyPieces)
         this.whitePiecesTake = []
         this.blackPiecesTake = []

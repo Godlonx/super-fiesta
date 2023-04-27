@@ -24,7 +24,6 @@ for (let i = 0; i < 8; i++) {
             }
         }
         cell.id = (c+8*i)
-        // cell.innerHTML = cell.id
         cell.onclick = function(){ GetPiece(cell.id) }
         if (newBoard.boardShadow[i][c] != null) {
             const pieceImg = document.createElement('img')
@@ -87,9 +86,4 @@ function removeSelected() {
       cell.classList.remove("selected");
       cell.innerHTML = cell.innerHTML.replace(dotSprite, "");
     });
-}
-
-
-const eat = (eatedPiece, usedPiece) => {
-    
 }
