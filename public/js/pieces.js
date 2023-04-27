@@ -1,4 +1,4 @@
-import { piecesMouvements } from "./chess.js";
+import { piecesMouvements } from "./data.js";
 
 export default class Piece {
     _name;

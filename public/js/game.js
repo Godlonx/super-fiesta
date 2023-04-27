@@ -1,5 +1,6 @@
 import Board from './chess.js'
 
+const dotSprite = '<img src="../public/img/dot.png" style="width: 20px; height: 20px; opacity: 0.5;">';
 const board = document.createElement("div");
 board.className = "board";
 document.body.appendChild(board);
@@ -72,14 +73,9 @@ const GetPiece = (cellPos) => {
     removeSelected();
     if (handedPiece != null) {
         val.classList.add("selected");
-        console.log(newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].possibleMoves)
         newBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].possibleMoves.forEach(val => {
             if (val >= 0 && val <= 63) {
-                if (document.getElementById(val).classList[1] == "black") {
-                    document.getElementById(val).classList.add("blackPreMoves");
-                } else {
-                    document.getElementById(val).classList.add("whitePreMoves");
-                }
+                document.getElementById(val).innerHTML = dotSprite;
             }
         })
     }
@@ -88,12 +84,8 @@ const GetPiece = (cellPos) => {
 function removeSelected() {
     const cells = document.querySelectorAll(".cell");
     cells.forEach(function(cell) {
-        cell.classList.remove("selected");
-        if (cell.classList[2] == "blackPreMoves") {
-            cell.classList.remove("blackPreMoves");
-        } else {
-            cell.classList.remove("whitePreMoves");
-        }
+      cell.classList.remove("selected");
+      cell.innerHTML = cell.innerHTML.replace(dotSprite, "");
     });
 }
 
