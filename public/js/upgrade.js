@@ -1,4 +1,4 @@
-const piecesUpgrade = {
+const _piecesUpgrade = {
     "lvl": {
         "0":{"pieces":["pawnX3", "knight"]},
         "1":{"pieces":["pawnX3", "bishop"]},
