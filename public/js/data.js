@@ -64,11 +64,18 @@ export const piecesMouvements = {
         if (nextPos != 0 && board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] == null) {
             possibleMoves.push(nextPos)
         }
-        if (nextPos%8>0 && board.boardShadow[Math.trunc((nextPos-1)/8)][nextPos%8] != null) {
-            possibleMoves.push(nextPos-1)
+        if (nextPos%8>0 && board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8] != null) {
+            console.log(board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8]);
+            if (board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8].color != piece.color) {
+                possibleMoves.push(nextPos-1)
+            }
         }
-        if (nextPos%8<7 && board.boardShadow[Math.trunc((nextPos+1)/8)][nextPos%8] != null) {
-            possibleMoves.push(nextPos+1)
+        console.log(board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8] );
+        if (nextPos%8<7 && board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8] != null) {
+            console.log("can eat something");
+            if (board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8].color != piece.color) {
+                possibleMoves.push(nextPos+1)
+            }
         }
         return possibleMoves
     },
