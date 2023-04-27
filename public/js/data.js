@@ -119,8 +119,8 @@ export const piecesMouvements = {
         const posY = pos%8
         for (let i=pos%8; i>-1; i--) { // Left-Down
             const nextPos = pos+(7*(pos%8-i))
-            console.log(""+i+" i-pos%8 : "+(pos%8-i));
-            if (nextPos != pos && (nextPos > 64 || board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null)) {
+            console.log(nextPos);
+            if (nextPos != pos && (nextPos >= 64 || board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null)) {
                 break
             } else if (nextPos != pos) {
                 possibleMoves.push(nextPos)
@@ -128,7 +128,7 @@ export const piecesMouvements = {
         }
         for (let i=pos%8; i<8; i++) {// Right-Down
             const nextPos = pos+(9*(i-pos%8))
-            if (nextPos != pos && (nextPos > 64 || board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null)) {
+            if (nextPos != pos && (nextPos >= 64 || board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null)) {
                 break
             } else if (nextPos != pos) {
                 possibleMoves.push(nextPos)
@@ -156,27 +156,27 @@ export const piecesMouvements = {
         const pos = piece.pos
         const possibleMoves = []
         if (pos%8 < 7 && Math.trunc(pos/8) < 7) {
-            const nextMove = pos+17 
+            const nextMove = pos+17
             console.log(nextMove);
-            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
+            if (nextMove <= 64 && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
                 possibleMoves.push(nextMove)
             }
         }
         if (pos%8 > 0 && Math.trunc(pos/8) < 7) {
             const nextMove = pos+15 
             console.log(nextMove);
-            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
+            if (nextMove <= 64 && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
                 possibleMoves.push(nextMove)
             }
         } 
-        if (pos%8 > 1 && Math.trunc(pos/8) < 8) {
-            const nextMove = pos+6 
+        if (pos%8 > 1 && Math.trunc(pos/8) < 7) {
+            const nextMove = pos+6
             console.log(nextMove);
-            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
+            if (nextMove > 0 && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
                 possibleMoves.push(nextMove)
             }
         }
-        if (pos%8 < 6 && Math.trunc(pos/8) < 8) {
+        if (pos%8 < 6 && Math.trunc(pos/8) < 7) {
             const nextMove = pos+10
             console.log(nextMove);
             if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
