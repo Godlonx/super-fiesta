@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .cell {
   height: 50px;
   width: 50px;
@@ -24,7 +25,7 @@
   background-color: #dbdebe;
 }
 .board .selected {
-  background-color: orange;
+  background-color: ²;
 }
 .board .whitePreMoves {
   background-color: #bec297;
@@ -33,5 +34,5 @@
   background-color: #accc99;
 }
 .board .eatable {
-  background-color: red;
+  background-color: #ff5032;
 }/*# sourceMappingURL=game.css.map */
