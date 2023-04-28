@@ -13,40 +13,44 @@ export class Shop {
         shop.className = "shop";
         shop.innerHTML = `
         <div class="upgrade">
-            <p>${this.upgrade1}</p>
+            <p class="name">${this.upgrade1}</p>
+            <img src="../public/img/pawn_pic.jpg">
             <button id="choice1">Choisir</button>
         </div>
         <div class="upgrade">
-            <p>${this.upgrade2}</p>
+            <p class="name">${this.upgrade2}</p>
+            <img src="../public/img/pawn_pic.jpg">
             <button id="choice2">Choisir</button>
         </div>
         <div class="upgrade">
-            <p>${this.upgrade3}</p>
+            <p class="name">${this.upgrade3}</p>
+            <img src="../public/img/pawn_pic.jpg">
             <button id="choice3">Choisir</button>
         </div>
-      `;
-      document.body.appendChild(shop);
+        `;
+        document.body.appendChild(shop);
         this.shop = shop;
 
-      const choice1 = document.getElementById("choice1");
-      const choice2 = document.getElementById("choice2");
-      const choice3 = document.getElementById("choice3");
+        const choice1 = document.getElementById("choice1");
+        const choice2 = document.getElementById("choice2");
+        const choice3 = document.getElementById("choice3");
 
-      choice1.addEventListener("click", () => {
-          this.upgrade = this.upgrade1;
-          this.returnUpgrade();
-      });
+        choice1.addEventListener("click", () => {
+            this.upgrade = this.upgrade1;
+            this.returnUpgrade();
+        });
 
-      choice2.addEventListener("click", () => {
-          this.upgrade = this.upgrade2;
-          this.returnUpgrade();
-      });
+        choice2.addEventListener("click", () => {
+            this.upgrade = this.upgrade2;
+            this.returnUpgrade();
+        });
 
-      choice3.addEventListener("click", () => {
-          this.upgrade = this.upgrade3;
-          this.returnUpgrade();
-      });
+        choice3.addEventListener("click", () => {
+            this.upgrade = this.upgrade3;
+            this.returnUpgrade();
+        });
     }
+
     returnUpgrade() {
         this.shop.remove();
         const selectedUpgrade = document.createElement("div");
