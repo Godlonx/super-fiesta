@@ -65,14 +65,11 @@ export const piecesMouvements = {
             possibleMoves.push(nextPos)
         }
         if (nextPos%8>0 && board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8] != null) {
-            console.log(board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8]);
             if (board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8].color != piece.color) {
                 possibleMoves.push(nextPos-1)
             }
         }
-        console.log(board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8] );
-        if (nextPos%8<7 && board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8] != null) {
-            console.log("can eat something");
+        if (nextPos%8 < 7 && board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8] != null) {
             if (board.boardShadow[Math.trunc((nextPos+1)/8)][(nextPos+1)%8].color != piece.color) {
                 possibleMoves.push(nextPos+1)
             }
@@ -82,22 +79,31 @@ export const piecesMouvements = {
     rook: (piece, board) => {
         const possibleMoves = []
         const pos = piece.pos
-        for (let i=pos; i%8>0; i++) {
+        for (let i=pos; i%8>=0 && Math.trunc(i/8) == Math.trunc(pos/8); i++) {
             if (board.boardShadow[Math.trunc(i/8)][i%8] != null && i != pos) {
+                if (board.boardShadow[Math.trunc(i/8)][i%8].color != piece.color) {
+                    possibleMoves.push(i)
+                }
                 break
             } else if (i != pos) {
                 possibleMoves.push(i)
             }
         }
-        for (let i=pos; i%8<7; i--) {
+        for (let i=pos; i%8<8 && Math.trunc(i/8) == Math.trunc(pos/8); i--) {
             if (board.boardShadow[Math.trunc(i/8)][i%8] != null && i != pos) {
+                if (board.boardShadow[Math.trunc(i/8)][i%8].color != piece.color) {
+                    possibleMoves.push(i)
+                }
                 break
             } else if (i != pos) {
                 possibleMoves.push(i)
             }
         }
-        for (let i=pos; i>0; i-=8) {
+        for (let i=pos; i>=0; i-=8) {
             if (board.boardShadow[Math.trunc(i/8)][i%8] != null && i != pos) {
+                if (board.boardShadow[Math.trunc(i/8)][i%8].color != piece.color) {
+                    possibleMoves.push(i)
+                }
                 break
             } else if (i != pos) {
                 possibleMoves.push(i)
@@ -105,6 +111,9 @@ export const piecesMouvements = {
         }
         for (let i=pos; i<64; i+=8) {
             if (board.boardShadow[Math.trunc(i/8)][i%8] != null && i != pos) {
+                if (board.boardShadow[Math.trunc(i/8)][i%8].color != piece.color) {
+                    possibleMoves.push(i)
+                }
                 break
             } else if (i != pos) {
                 possibleMoves.push(i)
@@ -119,35 +128,62 @@ export const piecesMouvements = {
         const posY = pos%8
         for (let i=pos%8; i>-1; i--) { // Left-Down
             const nextPos = pos+(7*(pos%8-i))
-            console.log(nextPos);
-            if (nextPos != pos && (nextPos >= 64 || board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null)) {
-                break
-            } else if (nextPos != pos) {
-                possibleMoves.push(nextPos)
+            if (nextPos != pos) {
+                if (nextPos >= 64) {
+                    break
+                } else if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null) {
+                    if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8].color != piece.color) {
+                        possibleMoves.push(nextPos)
+                    }
+                    break
+                } else {
+                    possibleMoves.push(nextPos)
+                }
             }
         }
         for (let i=pos%8; i<8; i++) {// Right-Down
             const nextPos = pos+(9*(i-pos%8))
-            if (nextPos != pos && (nextPos >= 64 || board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null)) {
-                break
-            } else if (nextPos != pos) {
-                possibleMoves.push(nextPos)
+            if (nextPos != pos) {
+                if (nextPos >= 64) {
+                    break
+                } else if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null) {
+                    if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8].color != piece.color) {
+                        possibleMoves.push(nextPos)
+                    }
+                    break
+                } else {
+                    possibleMoves.push(nextPos)
+                }
             }
         }
         for (let i=pos%8; i>-1; i--) {// Left-Up
             const nextPos = pos-(9*(pos%8-i))
-            if (nextPos != pos && (nextPos < 0 || board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null)) {
-                break
-            } else if (nextPos != pos){
-                possibleMoves.push(nextPos)
+            if (nextPos != pos) {
+                if (nextPos < 0) {
+                    break
+                } else if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null) {
+                    if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8].color != piece.color) {
+                        possibleMoves.push(nextPos)
+                    }
+                    break
+                } else {
+                    possibleMoves.push(nextPos)
+                }
             }
         }
         for (let i=pos%8; i<8; i++) {// Right-Up
             const nextPos = pos-(7*(i-pos%8))
-            if (nextPos != pos && (nextPos < 0 || board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null)) {
-                break
-            } else if (nextPos != pos){
-                possibleMoves.push(nextPos)
+            if (nextPos != pos) {
+                if (nextPos < 0) {
+                    break
+                } else if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null) {
+                    if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8].color != piece.color) {
+                        possibleMoves.push(nextPos)
+                    }
+                    break
+                } else {
+                    possibleMoves.push(nextPos)
+                }
             }
         }
         return possibleMoves
@@ -157,57 +193,71 @@ export const piecesMouvements = {
         const possibleMoves = []
         if (pos%8 < 7 && Math.trunc(pos/8) < 7) {
             const nextMove = pos+17
-            console.log(nextMove);
-            if (nextMove <= 64 && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
-                possibleMoves.push(nextMove)
+            if (nextMove < 64){
+                if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null) {
+                    possibleMoves.push(nextMove)
+                } else if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] != null && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8].color != piece.color) {
+                    possibleMoves.push(nextMove)
+                }
             }
         }
         if (pos%8 > 0 && Math.trunc(pos/8) < 7) {
-            const nextMove = pos+15 
-            console.log(nextMove);
-            if (nextMove <= 64 && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
-                possibleMoves.push(nextMove)
+            const nextMove = pos+15
+            if (nextMove < 64){
+                if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null) {
+                    possibleMoves.push(nextMove)
+                } else if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] != null && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8].color != piece.color) {
+                    possibleMoves.push(nextMove)
+                }
             }
         } 
         if (pos%8 > 1 && Math.trunc(pos/8) < 7) {
             const nextMove = pos+6
-            console.log(nextMove);
-            if (nextMove > 0 && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
-                possibleMoves.push(nextMove)
+            if (nextMove > 0){
+                if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null) {
+                    possibleMoves.push(nextMove)
+                } else if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] != null && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8].color != piece.color) {
+                    possibleMoves.push(nextMove)
+                }
             }
         }
         if (pos%8 < 6 && Math.trunc(pos/8) < 7) {
             const nextMove = pos+10
-            console.log(nextMove);
-            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
+            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null) {
+                possibleMoves.push(nextMove)
+            } else if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] != null && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8].color != piece.color) {
                 possibleMoves.push(nextMove)
             }
         }
         if (pos%8 > 0 && Math.trunc(pos/8) > 1) {
             const nextMove = pos-17 
-            console.log(nextMove);
-            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
+            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null) {
+                possibleMoves.push(nextMove)
+            } else if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] != null && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8].color != piece.color) {
                 possibleMoves.push(nextMove)
             }
         }
         if (pos%8 < 7  && Math.trunc(pos/8) > 1) {
             const nextMove = pos-15 
-            console.log(nextMove);
-            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
+            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null) {
+                possibleMoves.push(nextMove)
+            } else if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] != null && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8].color != piece.color) {
                 possibleMoves.push(nextMove)
             }
         }
         if (pos%8 < 6  && Math.trunc(pos/8) > 0) {
             const nextMove = pos-6
-            console.log(nextMove);
-            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
+            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null) {
+                possibleMoves.push(nextMove)
+            } else if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] != null && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8].color != piece.color) {
                 possibleMoves.push(nextMove)
             }
         }
         if (pos%8 > 1 && Math.trunc(pos/8) > 0) {
             const nextMove = pos-10
-            console.log(nextMove);
-            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null){
+            if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] == null) {
+                possibleMoves.push(nextMove)
+            } else if (board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8] != null && board.boardShadow[Math.trunc((nextMove)/8)][(nextMove)%8].color != piece.color) {
                 possibleMoves.push(nextMove)
             }
         }
@@ -222,7 +272,53 @@ export const piecesMouvements = {
         return possibleMoves
     },
     king: (piece, board) => {
-        return []
+        const possibleMoves = []
+        const orientations = [1, -1, 8, -8, 7, 9, -7, -9]
+        const pos = piece.pos
+
+        const checkIsEnemy = (nextPos) => {
+            if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] != null) {
+                if (board.boardShadow[Math.trunc(nextPos/8)][nextPos%8].color != piece.color) {
+                    possibleMoves.push(nextPos)
+                }
+            } else {
+                possibleMoves.push(nextPos)
+            }
+        }
+
+        let nextPos = pos+1
+        if (nextPos < 64 && nextPos >= 0 && pos%8 < 7) {
+            checkIsEnemy(nextPos)
+        }
+        nextPos = pos-1
+        if (nextPos < 64 && nextPos >= 0 && pos%8 > 0) {
+            checkIsEnemy(nextPos)
+        }
+        nextPos = pos+8
+        if (nextPos < 64 && nextPos >= 0 && Math.trunc(pos/8) < 7) {
+            checkIsEnemy(nextPos)
+        }
+        nextPos = pos-8
+        if (nextPos < 64 && nextPos >= 0 && Math.trunc(pos/8) > 0) {
+            checkIsEnemy(nextPos)
+        }
+        nextPos = pos+7
+        if (nextPos < 64 && nextPos >= 0 && Math.trunc(pos/8) < 7 && pos%8 > 0) {
+            checkIsEnemy(nextPos)
+        }
+        nextPos = pos+9
+        if (nextPos < 64 && nextPos >= 0 && Math.trunc(pos/8) < 7 && pos%8 < 7) {
+            checkIsEnemy(nextPos)
+        }
+        nextPos = pos-7
+        if (nextPos < 64 && nextPos >= 0 && Math.trunc(pos/8) > 0 && pos%8 < 7) {
+            checkIsEnemy(nextPos)
+        }
+        nextPos = pos-9
+        if (nextPos < 64 && nextPos >= 0 && Math.trunc(pos/8) > 0 && pos%8 > 0) {
+            checkIsEnemy(nextPos)
+        }
+        return possibleMoves
     }
 }
 

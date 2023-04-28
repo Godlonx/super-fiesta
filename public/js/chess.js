@@ -16,7 +16,7 @@ export default class Board {
         this.blackPiecesTake = []
     }
 
-    initBoard(playerPieces, enemyPieces) {
+    initBoard = (playerPieces, enemyPieces) => {
         for (let i=0; i<8; i++) {
             const newLine = []
             for (let j=0; j<8; j++) {
@@ -51,7 +51,7 @@ export default class Board {
         }
     }
 
-    setEnemyPieces(lvl) {
+    setEnemyPieces = (lvl) => {
         const enemyPieces = []
         const enemy = enemiesTable.lvl[lvl]
         for (let i=0; i<enemy.pieces.length; i++) {
