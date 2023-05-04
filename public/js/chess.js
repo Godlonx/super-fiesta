@@ -1,4 +1,3 @@
-// Dependecies
 import {enemiesTable, piecesMaker, _piecesUpgrade} from "./data.js";
 
 export default class Board {
