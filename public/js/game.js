@@ -117,38 +117,42 @@ class Game {
     }
     
     GetPiece(cellPos) {
-        console.log(this.turn);
         const val = document.getElementById(cellPos)
-        console.log("next pos", cellPos,"pawn pos:", this.cellIndex);
+        console.log("1");
         if (this.handedPiece != null) {
+            console.log("2");
             if (this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8].possibleMoves.includes(Number(cellPos))) {
                 if (this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
                     if (this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color != this.handedPiece.color) {
                         val.removeChild(val.firstChild)
                         val.appendChild(this.handedPiece["0"])
-                        this.backBoard.whitePiecesTake.push(this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8])
+                        if (this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color == "black") {
+                            this.backBoard.whitePiecesTake.push(this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8])
+                        } else {
+                            this.backBoard.blackPiecesTake.push(this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8])
+                        }
                         this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8].possibleMoves = []
                         this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8].move(cellPos)
                         this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8]
                         this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8] = null
                     }
                 } else {
-                    console.log(this.handedPiece["0"]);
+                    console.log("3");
                     val.appendChild(this.handedPiece["0"])
                     this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8].move(cellPos)
                     this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8].possibleMoves = []
                     this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] = this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8]
                     this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8] = null
                 }
+                if (this.turn == "black") {
+                    this.turn = "white"
+                } else {
+                    this.turn = "black"
+                }
+                this.handedPiece = null
+                this.cellIndex = null
+                this.play()
             }
-            this.handedPiece = null
-            this.cellIndex = null
-            if (this.turn == "black") {
-                this.turn = "white"
-            } else {
-                this.turn = "black"
-            }
-            this.play()
         } else if (this.handedPiece == null && this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
             this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].checkMovementsRight(this.backBoard)
             this.handedPiece = val.children
