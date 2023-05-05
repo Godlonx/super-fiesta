@@ -190,10 +190,9 @@ class Game {
     }
 
     nextLevel = () => {
-        document.querySelector(".board").remove()
-        const nextGame = new Game(this.level+1, startPlayerTeam)
-        nextGame.start()
-    }
+        const shop = new Shop(this.level);
+        shop.createShop();
+    } 
 
     loose = () => {
         location.href = "http://127.0.0.1:5500/views/lose.html"

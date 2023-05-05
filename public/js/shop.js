@@ -1,14 +1,16 @@
+import { piecesUpgrade } from "./data.js";
+
 export class Shop {
-    constructor(upgrade1, upgrade2, upgrade3) {
-        this.upgrade1 = upgrade1;
-        this.upgrade2 = upgrade2;
-        this.upgrade3 = upgrade3;
-        this.board = document.querySelector(".board");
+    constructor(level) {
+        this.level = level;
+        this.upgrade1 = piecesUpgrade.lvl[this.level].pieces[0]
+        this.upgrade2 = piecesUpgrade.lvl[this.level].pieces[1]
+        this.upgrade3 = piecesUpgrade.lvl[this.level].pieces[2]
         this.shop = null;
     }
 
     createShop() {
-        this.board.remove();
+        document.querySelector(".board").remove();
         const shop = document.createElement("div");
         shop.className = "shop";
         shop.innerHTML = `
