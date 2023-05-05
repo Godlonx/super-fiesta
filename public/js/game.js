@@ -154,6 +154,8 @@ class Game {
                 this.cellIndex = null
                 this.play()
             }
+            this.handedPiece = null
+            this.cellIndex = null
         } else if (this.handedPiece == null && this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
             this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].checkMovementsRight(this.backBoard)
             this.handedPiece = val.children
@@ -181,7 +183,12 @@ class Game {
         });
     }
 
-    loose(){
+    nextLevel = () => {
+        const shop = new Shop(this.level);
+        shop.createShop();
+    } 
+
+    loose = () => {
         location.href = "http://127.0.0.1:5500/views/lose.html"
     }
 }

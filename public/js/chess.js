@@ -1,4 +1,4 @@
-import {enemiesTable, piecesMaker, _piecesUpgrade} from "./data.js";
+import {enemiesTable, piecesMaker, piecesUpgrade} from "./data.js";
 
 export default class Board {
     constructor(playerPieces, lvl) {
