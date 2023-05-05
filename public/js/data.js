@@ -273,7 +273,6 @@ export const piecesMouvements = {
     },
     king: (piece, board) => {
         const possibleMoves = []
-        const orientations = [1, -1, 8, -8, 7, 9, -7, -9]
         const pos = piece.pos
 
         const checkIsEnemy = (nextPos) => {
