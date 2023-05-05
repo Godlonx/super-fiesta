@@ -1,9 +1,9 @@
-import Bishop from './bishop.js';
-import Queen from './queen.js';
-import King from './king.js';
-import Pawn from './pawn.js';
-import Rook from './rook.js';
-import Knight from './knight.js';
+import Bishop from './piecesFolder/bishop.js';
+import Queen from './piecesFolder/queen.js';
+import King from './piecesFolder/king.js';
+import Pawn from './piecesFolder/pawn.js';
+import Rook from './piecesFolder/rook.js';
+import Knight from './piecesFolder/knight.js';
 
 export const enemiesTable = {
     "lvl": {

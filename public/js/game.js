@@ -1,5 +1,5 @@
 import Board from './chess.js'
-import {piecesMaker, piecesUpgrade} from './data.js';
+import {piecesMaker} from './data.js';
 import {Shop} from './shop.js';
 
 const dotSprite = '<img src="../public/img/dot.png" style="width: 20px; height: 20px; opacity: 0.5;">';
