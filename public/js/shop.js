@@ -10,6 +10,7 @@ export class Shop {
     }
 
     createShop() {
+        document.querySelector(".board").remove();
         const shop = document.createElement("div");
         shop.className = "shop";
         shop.innerHTML = `
