@@ -322,11 +322,11 @@ export const piecesMouvements = {
     }
 }
 
-export const _piecesUpgrade = {
+export const piecesUpgrade = {
     "lvl": {
-        "0":{"pieces":["pawnX3", "knight"]},
-        "1":{"pieces":["pawnX3", "bishop"]},
-        "2":{"pieces":["knightX2", "bishopX2", "rook"]},
-        "3":{"pieces":["knightX3", "bishopX3", "rookX2", "queen"]}
+        "0":{"pieces":["pawnX2", "knight"]},
+        "1":{"pieces":["pawnX2", "bishop"]},
+        "2":{"pieces":["knight", "bishop", "rook"]},
+        "3":{"pieces":["knight", "bishop", "rook", "queen"]}
     }
 }

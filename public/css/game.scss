@@ -39,6 +39,14 @@ $blackColor: #779556;
     }
 }
 
+.turnInfo {
+    position: absolute;
+    display: flex;
+    margin-top: 10px;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .shop {
     display: flex;
     justify-content: space-evenly;
