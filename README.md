@@ -11,7 +11,7 @@
 - *Execute `git clone https://github.com/Godlonx/super-fiesta`.*
 
 ## **HOW TO PLAY :**
-- *Go in the folder Super-Fiesta.*
+- *open the folder Super-Fiesta with VsCode*
 - *there is 2 ways to start the game :*
     - *First way :*
         - *In the directory `views` open the file `home.html`*
