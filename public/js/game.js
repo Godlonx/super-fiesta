@@ -37,7 +37,6 @@ export default class Game {
         let isFinish = false
         this.backBoard.blackPiecesTake.forEach(piece => {
             if (piece.name == "king") {
-                console.log("win");
                 this.nextLevel()
                 isFinish = true
             }
@@ -120,10 +119,7 @@ export default class Game {
     
     GetPiece = (cellPos) => {
         const selectedPiece = document.getElementById(cellPos)
-        console.log(selectedPiece);
-        console.log("1");
         if (this.handedPiece != null) {
-            console.log("2");
             if (this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8].possibleMoves.includes(Number(cellPos))) {
                 if (this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
                     if (this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color != this.handedPiece.color) {
@@ -140,7 +136,6 @@ export default class Game {
                         this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8] = null
                     }
                 } else {
-                    console.log("3");
                     selectedPiece.appendChild(this.handedPiece["0"])
                     this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8].move(cellPos)
                     this.backBoard.boardShadow[Math.trunc(this.cellIndex/8)][this.cellIndex%8].possibleMoves = []
@@ -158,7 +153,7 @@ export default class Game {
             }
             this.handedPiece = null
             this.cellIndex = null
-        } else if (this.handedPiece == null && this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null) {
+        } else if (this.handedPiece == null && this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8] != null && this.turn == this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].color) {
             this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].checkMovementsRight(this.backBoard)
             this.handedPiece = selectedPiece.children
             this.cellIndex = cellPos
@@ -166,7 +161,6 @@ export default class Game {
         this.removeSelected();
         if (this.handedPiece != null) {
             selectedPiece.classList.add("selected");
-            console.log(this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].possibleMoves);
             this.backBoard.boardShadow[Math.trunc(cellPos/8)][cellPos%8].possibleMoves.forEach(val => {
                 if (val >= 0) {
                     if (this.backBoard.boardShadow[Math.trunc(val/8)][val%8] != null) {
@@ -196,7 +190,6 @@ export default class Game {
                 invalidPos.push(piece.pos)
             })
             name = name.toLowerCase()
-            console.log(name.toLowerCase());
             if (name == "king") {
                 placedPieces.push(piecesMaker[name](60, "white"))
             } else if (name == "pawn") {

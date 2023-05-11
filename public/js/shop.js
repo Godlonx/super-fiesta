@@ -58,7 +58,6 @@ export class Shop {
     returnUpgrade() {
         this.shop.remove();
         const pieceInfo = this.upgrade.split(' X')
-        console.log(pieceInfo.length);
         let piecesAdd = []
         if (pieceInfo.length > 1) {
             const number = Number.parseInt(pieceInfo[1])
@@ -68,7 +67,6 @@ export class Shop {
         } else {
             piecesAdd.push(pieceInfo[0])
         }
-        console.log(piecesAdd);
         piecesAdd = piecesAdd.concat(this.alreadyAddedPieces)
         const nextBoard = new Game(this.level+1, piecesAdd)
         nextBoard.start()
