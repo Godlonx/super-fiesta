@@ -3,17 +3,16 @@ import {piecesMaker, piecesUpgrade} from './data.js';
 import {Shop} from './shop.js';
 
 const dotSprite = '<img src="../public/img/dot.png" style="width: 20px; height: 20px; opacity: 0.5;">';
-const posStart = [60, 56, 48]
-const piecesStart = ["king","queen","pawn"]
-console.log(piecesStart[0]);
-const startPlayerTeam = [piecesMaker[piecesStart[0]](posStart[0], "white"), piecesMaker[piecesStart[1]](posStart[1], "white"), piecesMaker[piecesStart[2]](posStart[2], "white")]
+const piecesStart = []
 
 
-class Game {
+export default class Game {
     constructor(level, PlayerTeam) {
         this.level = level;
         this.basicTeam = [piecesMaker["king"](60, "white"), piecesMaker["queen"](56, "white"), piecesMaker["pawn"](48, "white")]
-        this.basicTeam.concat(PlayerTeam)
+        this.addedPieces = PlayerTeam
+        const PlayerTeamPlaced = this.placePieces(PlayerTeam)
+        this.basicTeam = this.basicTeam.concat(PlayerTeamPlaced)
         this.backBoard = new Board(this.basicTeam, this.level)
         this.turn = "white"
         this.handedPiece = null;
@@ -189,9 +188,41 @@ class Game {
         });
     }
 
+    placePieces = (piecesName) => {
+        const placedPieces = []
+        piecesName.forEach(name => {
+            const invalidPos = []
+            this.basicTeam.forEach(piece => {
+                invalidPos.push(piece.pos)
+            })
+            name = name.toLowerCase()
+            console.log(name.toLowerCase());
+            if (name == "king") {
+                placedPieces.push(piecesMaker[name](60, "white"))
+            } else if (name == "pawn") {
+                let pos = Math.round(Math.random() * (55-48) + 48);
+                while (invalidPos.includes(pos)) {
+                    pos = Math.round(Math.random() * (55-48) + 48);
+                }
+                placedPieces.push(piecesMaker[name](pos, "white"))
+            } else { 
+                let pos = Math.round(Math.random() * (63-56) + 56);
+                while (invalidPos.includes(pos)) {
+                    pos = Math.round(Math.random() * (63-56) + 56);
+                }
+                placedPieces.push(piecesMaker[name](pos, "white"))
+            }
+        })
+        return placedPieces
+    }
+
     nextLevel = () => {
-        const shop = new Shop(this.level);
-        shop.createShop();
+        if (this.level < 3) {
+            const shop = new Shop(this.level, this.addedPieces);
+            shop.createShop();
+        } else {
+            location.href = "http://127.0.0.1:5500/views/win.html"
+        }
     } 
 
     loose = () => {
@@ -200,5 +231,5 @@ class Game {
 }
 
 
-const game = new Game(1, startPlayerTeam)
+const game = new Game(1, piecesStart)
 game.start()

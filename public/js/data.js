@@ -8,7 +8,7 @@ import Knight from './knight.js';
 export const enemiesTable = {
     "lvl": {
         "0":{"object":null, "pieces":["king", "pawn", "pawn"], "pos":[3, 11, 12]},
-        "1":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop"], "pos":[3, 10, 11, 12, 13, 34]},
+        "1":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop"], "pos":[3, 10, 11, 12, 13, 14]},
         "2":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight"], "pos":[3, 10, 11, 12, 13, 2, 5, 4]},
         "3":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight", "rook", "queen"], "pos":[3, 10, 11, 12, 13, 1, 2, 5, 0, 4]},
         "100":{"object":null, "pieces":["king", "pawn", "bishop", "queen", "rook", "knight"], "pos":[0, 1, 2, 3, 4, 5]}
@@ -58,7 +58,7 @@ export const piecesMouvements = {
         let nextPos = 0;
         if (piece.color == "black" && pos+8 < 64) {
             nextPos = pos+8
-        } else if (piece.color == "white" && pos-8 > 0) {
+        } else if (piece.color == "white" && pos-8 >= 0) {
             nextPos = pos-8
         }
         if (nextPos != 0 && board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] == null) {

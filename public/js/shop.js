@@ -1,12 +1,14 @@
-import { piecesUpgrade } from "./data.js";
+import { piecesMaker, piecesUpgrade } from "./data.js";
+import Game from "./game.js";
 
 export class Shop {
-    constructor(level) {
+    constructor(level, alreadyAddedPieces) {
         this.level = level;
         this.upgrade1 = piecesUpgrade.lvl[this.level].pieces[0]
         this.upgrade2 = piecesUpgrade.lvl[this.level].pieces[1]
         this.upgrade3 = piecesUpgrade.lvl[this.level].pieces[2]
         this.shop = null;
+        this.alreadyAddedPieces = alreadyAddedPieces
     }
 
     createShop() {
@@ -55,8 +57,20 @@ export class Shop {
 
     returnUpgrade() {
         this.shop.remove();
-        const selectedUpgrade = document.createElement("div");
-        selectedUpgrade.textContent = `Upgrade sélectionné : ${this.upgrade}`;
-        document.body.appendChild(selectedUpgrade);
+        const pieceInfo = this.upgrade.split(' X')
+        console.log(pieceInfo.length);
+        let piecesAdd = []
+        if (pieceInfo.length > 1) {
+            const number = Number.parseInt(pieceInfo[1])
+            for (let i=0; i <number; i++) {
+                piecesAdd.push(pieceInfo[0])
+            }
+        } else {
+            piecesAdd.push(pieceInfo[0])
+        }
+        console.log(piecesAdd);
+        piecesAdd = piecesAdd.concat(this.alreadyAddedPieces)
+        const nextBoard = new Game(this.level+1, piecesAdd)
+        nextBoard.start()
     }
 }
