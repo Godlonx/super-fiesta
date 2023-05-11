@@ -1,4 +1,4 @@
-import Piece from "./pieces.js";
+import Piece from "../pieces.js";
 
 export default class Rook extends Piece {
     constructor(pos, color, sprite) {
