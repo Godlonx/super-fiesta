@@ -34,6 +34,7 @@ export default class Game {
     }
 
     play = () => {
+        console.log(this.turn);
         let isFinish = false
         this.backBoard.blackPiecesTake.forEach(piece => {
             if (piece.name == "king") {

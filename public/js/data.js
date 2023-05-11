@@ -11,6 +11,7 @@ export const enemiesTable = {
         "1":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop"], "pos":[3, 10, 11, 12, 13, 14]},
         "2":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight"], "pos":[3, 10, 11, 12, 13, 2, 5, 4]},
         "3":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight", "rook", "queen"], "pos":[3, 10, 11, 12, 13, 1, 2, 5, 0, 4]},
+        "99":{"object":null, "pieces":[], "pos":[]},
         "100":{"object":null, "pieces":["king", "pawn", "bishop", "queen", "rook", "knight"], "pos":[0, 1, 2, 3, 4, 5]}
     }
 }

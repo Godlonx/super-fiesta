@@ -1,8 +1,0 @@
-{
-    "lvl": {
-        "0":{"object":null, "pieces":["king", "pawn", "pawn"], "pos":[4, 12, 13]},
-        "1":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop"], "pos":[4, 11, 12, 13, 14, 3]},
-        "2":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight"], "pos":[4, 11, 12, 13, 14, 3, 6, 5]},
-        "3":{"object":null, "pieces":["king", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight", "rook", "queen"], "pos":[4, 11, 12, 13, 14, 2, 3, 6, 1, 5]}
-    }
-}

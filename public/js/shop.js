@@ -1,4 +1,4 @@
-import { piecesMaker, piecesUpgrade } from "./data.js";
+import { piecesUpgrade } from "./data.js";
 import Game from "./game.js";
 
 export class Shop {
