@@ -61,7 +61,7 @@ export const piecesMouvements = {
         } else if (piece.color == "white" && pos-8 >= 0) {
             nextPos = pos-8
         }
-        if (nextPos != 0 && board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] == null) {
+        if (nextPos >= 0 && board.boardShadow[Math.trunc(nextPos/8)][nextPos%8] == null) {
             possibleMoves.push(nextPos)
         }
         if (nextPos%8>0 && board.boardShadow[Math.trunc((nextPos-1)/8)][(nextPos-1)%8] != null) {
